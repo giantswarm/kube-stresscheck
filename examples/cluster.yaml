@@ -1,0 +1,17 @@
+kind: DaemonSet
+apiVersion: extensions/v1beta1
+metadata:
+  name: kube-stresscheck
+  namespace: kube-system
+  labels:
+    app: kube-stresscheck
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: kube-stresscheck
+    spec:
+      containers:
+        - name: kube-stresscheck
+          image: quay.io/giantswarm/kube-stresscheck:latest
