@@ -42,7 +42,7 @@ func main() {
 	}
 
 	// Print usage.
-	if os.Args[1] == "--help" {
+	if (len(os.Args) > 1) && (os.Args[1] == "--help") {
 		return
 	}
 
