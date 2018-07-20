@@ -1,0 +1,20 @@
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: kube-stresscheck
+  namespace: kube-system
+  labels:
+    app: kube-stresscheck
+spec:
+  template:
+    metadata:
+      labels:
+        app: kube-stresscheck
+    spec:
+      tolerations:
+        # Allow the pod to run on the master.
+        - key: node-role.kubernetes.io/master
+          effect: NoSchedule
+      containers:
+        - name: kube-stresscheck
+          image: quay.io/giantswarm/kube-stresscheck:latest

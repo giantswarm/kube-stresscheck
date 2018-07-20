@@ -6,15 +6,12 @@ metadata:
   labels:
     app: kube-stresscheck
 spec:
+  replicas: 1
   template:
     metadata:
       labels:
         app: kube-stresscheck
     spec:
-      tolerations:
-        # Allow the pod to run on the master.
-        - key: node-role.kubernetes.io/master
-          effect: NoSchedule
       containers:
         - name: kube-stresscheck
           image: quay.io/giantswarm/kube-stresscheck:latest
