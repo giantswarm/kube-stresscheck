@@ -18,7 +18,3 @@ spec:
       containers:
         - name: kube-stresscheck
           image: quay.io/giantswarm/kube-stresscheck:latest
-          livenessProbe:
-            httpGet:
-              path: /
-              port: 6666

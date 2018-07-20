@@ -4,7 +4,6 @@ import (
 	"flag"
 	"fmt"
 	"log"
-	"net/http"
 	"os"
 	"os/exec"
 	"runtime"
@@ -54,17 +53,6 @@ func main() {
 		return
 	}
 
-	// Liveness probe.
-	http.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
-		fmt.Fprintf(w, "")
-	})
-
-	// Run http listener.
-	log.Printf("Starting http listener on %s", listenSocket)
-	go func() {
-		log.Fatal(http.ListenAndServe(listenSocket, nil))
-	}()
-
 	// CPU forks to start. By default allocate 2 times cores.
 	var stressCPUForks = 2 * runtime.NumCPU()
 
@@ -82,7 +70,7 @@ func main() {
 	}
 
 	// Invoke stress command multiple times.
-	for i := 0; i < stressLoops; i++ {
+	for i := 0; i < stressIterations; i++ {
 		log.Printf("Executing %s with %v", stressBinary, args)
 
 		err := exec.Command(stressBinary, args...).Run()
