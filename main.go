@@ -1,7 +1,6 @@
 package main
 
 import (
-	"flag"
 	"fmt"
 	"log"
 	"os"
@@ -42,14 +41,8 @@ func main() {
 		return
 	}
 
-	var help bool
-
-	flag.BoolVar(&help, "help", false, "Print usage and exit")
-	flag.Parse()
-
 	// Print usage.
-	if help {
-		flag.Usage()
+	if os.Args[1] == "--help" {
 		return
 	}
 
