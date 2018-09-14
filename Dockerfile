@@ -1,4 +1,4 @@
-FROM alpine:3.7
+FROM alpine:3.8
 
 # Build stress from source.
 RUN STRESS_VERSION=1.0.4; \
