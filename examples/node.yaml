@@ -61,10 +61,15 @@ spec:
       labels:
         app: kube-stresscheck
     spec:
-      tolerations:
-        # Allow the pod to run on the master.
-        - key: node-role.kubernetes.io/master
-          effect: NoSchedule
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/role
+                operator: In
+                values:
+                - worker
       serviceAccount: kube-stresscheck
       securityContext:
         runAsUser: 0
