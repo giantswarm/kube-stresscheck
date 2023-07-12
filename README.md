@@ -25,7 +25,7 @@ kubectl get nodes
 kubectl delete -f https://raw.githubusercontent.com/giantswarm/kube-stresscheck/master/examples/node.yaml
 ```
 
-Usually pods like `kube-proxy`, `nginx-ingress-controller`, `calico-node` are crashlooping. If kubelet or docker was affected by stress test then node will become `NotReady`.
+Usually pods like `kube-proxy`, `ingress-nginx-controller`, `calico-node` are crashlooping. If kubelet or docker was affected by stress test then node will become `NotReady`.
 
 ## Stress test whole cluster
 
